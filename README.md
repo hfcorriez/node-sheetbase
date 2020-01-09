@@ -83,7 +83,7 @@ Sheet.find(query)
   - **$lt**: Check cell number less than a number. `{field: {$lt: 10}}}}`
   - **$lte**: Check cell number less than or equal a number. `{field: {$lte: 10}}`
   - **$contains**: Check cell contains a string. `{field: {$contains: "string"}}`
-- **options*
+- **options**
   - **limit**
   - **skip**
   - **sort**: `{sort: {age: -1}}`
