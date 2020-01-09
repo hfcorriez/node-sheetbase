@@ -97,7 +97,7 @@ const result = await sheet.find({
 })
 ```
 
-### Sheet.findOne
+#### Sheet.findOne
 
 > Find one row in the sheet
 
@@ -117,7 +117,7 @@ const result = await sheet.find({
 })
 ```
 
-### Sheet.create
+#### Sheet.create
 
 > Append rows into the sheet
 
@@ -135,7 +135,7 @@ sheet.create({
 })
 ```
 
-### Sheet.update
+#### Sheet.update
 
 > Update the cells in the row
 
@@ -144,12 +144,12 @@ Sheet.create(query, update)
 ```
 - **query** Mongodb like query, such as "find"
 - **update** Mongodb like update query
-  - **inc** Incre the number (string will be incresed with 0). example `{ age: {$inc: 1} }`
-  - **append** Append the string to the cell
-  - **prepend** Prepend the string to the cell
-  - **lowercase** Lowercase the cell string
-  - **uppercase** Uppercase the cell string
-  - **replace** Replace the cell string. example `{ time: {$replace: {"am": "pm"}}}`
+  - **$inc** Incre the number (string will be incresed with 0). example `{ age: {$inc: 1} }`
+  - **$append** Append the string to the cell
+  - **$prepend** Prepend the string to the cell
+  - **$lowercase** Lowercase the cell string
+  - **$uppercase** Uppercase the cell string
+  - **$replace** Replace the cell string. example `{ time: {$replace: {"am": "pm"}}}`
 
 
 ```javascript
@@ -163,7 +163,7 @@ sheet.update({
 })
 ```
 
-### Sheet.delete
+#### Sheet.delete
 
 > Delete the row
 
