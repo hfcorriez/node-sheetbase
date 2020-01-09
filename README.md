@@ -47,12 +47,14 @@ const findRows = await sheetbase.sheet().find(
   - **list** List sheet data
   - **expand** Expand sheet grids
   
-### Sheetbase.sheet
+### Sheetbase
+
+#### Sheetbase.sheet
 
 ```
 Sheetbase.sheet(id)
 ```
-- ***id** 
+- **id** 
   - `null` is default sheet with gid `0`
   - `small number` like 0-10 is for `sheet index`
   - `big number` is for `gid`
@@ -62,7 +64,9 @@ Sheetbase.sheet(id)
 const sheet = sheetbase.sheet()
 ```
 
-### Sheet.find
+### Sheet
+
+#### Sheet.find
 
 > Find rows in the sheet
 
@@ -78,7 +82,7 @@ Sheet.find(query)
   - **$gte**: Check cell number great than or equal a number. `{field: {$gte: 10}}}}`
   - **$lt**: Check cell number less than a number. `{field: {$lt: 10}}}}`
   - **$lte**: Check cell number less than or equal a number. `{field: {$lte: 10}}`
-  - **contains**: Check cell contains a string. `{field: {$contains: "string"}}`
+  - **$contains**: Check cell contains a string. `{field: {$contains: "string"}}`
 - **options*
   - **limit**
   - **skip**
