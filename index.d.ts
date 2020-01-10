@@ -8,29 +8,29 @@ type BasicOptions = {
 
 export type SheetbaseOptions = BasicOptions
 
-export interface Sheetbase {
-  new (options: Options): Sheetbase;
+export class Sheetbase {
+  constructor (options: SheetbaseOptions);
   // Load sheets full data
-  sheet(sheet: number | string): Sheet;
+  sheet<T>(sheet: number | string): Sheet<T>;
   // Switch sheet to control base
   data(): Promise<SpreadsheetData>;
   // Get spreadsheet file info in Google drive
   file(): Promise<any>;
-  async sheets(): Promise<any>;
+  sheets(): Promise<any>;
 }
 
 type NumOpts = { [key in '$gt' | '$gte' | '$lt' | '$lte' ]: number }
 type AnyOpts = { [key in '$contains']: any }
-type BoolOpts = { [key in '$empty']: bool }
+type BoolOpts = { [key in '$empty']: boolean }
 
 type QueryFilter<T> = {
-  [field in keyof T]: 'string' | RegExp | NumOpts | AnyOpts | BoolOpts
+  [field in keyof Partial<T>]: string | RegExp | NumOpts | AnyOpts | BoolOpts
 }
 
 type QueryOptions<T> = {
   limit?: number
   skip?: number
-  sort: {
+  sort?: {
     [field in keyof T]: 1 | -1
   }
 }
@@ -46,17 +46,17 @@ type UpdateOptions<T> = {
   [field in keyof T]: string | number | StrOrNumOpts | StrOpts | ObjOpts
 }
 
-export interface Sheet<T> {
-  new<T> (options: SheetOptions): Sheet<T>
+export class Sheet<T> {
+  constructor (options: SheetOptions);
     // Create row with JSON data
-    async create(data: T | T[]): Promise<void>;
+    create(data: T | T[]): Promise<void>;
     // Create rows with JSON data and matched the query
-    update(filter: QueryFilter<T>, update: UpdateOptions<T>);
+    update(filter: QueryFilter<T>, update: UpdateOptions<T>): Promise<any>;
     // Delete rows that matched the query
-    delete();
-    async find(filter: QueryFilter<T>, options: QueryOptions<T>): Promise<Array<T>>
+    delete(): Promise<any>;
+    find(filter: QueryFilter<T>, options?: QueryOptions<T>): Promise<Array<T>>
     // Get one row data that matched the query
-    async findOne(filter: QueryFilter<T>, options: QueryOptions<T>): Promise<T>;
+    findOne(filter: QueryFilter<T>, options?: QueryOptions<T>): Promise<T>;
     // Flush full sheet with new JSON data
     flush(data: T | T[]): Promise<void>;
 }
@@ -102,10 +102,10 @@ type UpdateSheetOptions<T> = {
 type DeleteSheetOptions = { rows: number | number[], columns: number | number[]} & SheetFilter
 type ListSheetOptions = { limit?: number, start?: number, fresh?: boolean } & DeleteSheetOptions
 
-export interface Spreadsheet {
-  new (options: SpreadOptions): Spreadsheet
+export class Spreadsheet {
+  constructor (options: SpreadsheetOptions);
   // Load full data
-  async load(options: SpreadsheetLoadOpts): Promise<SpreadsheetData>;
+  load(options: SpreadsheetLoadOpts): Promise<SpreadsheetData>;
   // Get a sheet
   getSheet(sheet: string | number): SheetData;
   // Add new sheet
@@ -119,7 +119,7 @@ export interface Spreadsheet {
   // Delete rows or columns
   delete(options: DeleteSheetOptions): Promise<any>; // @fixme
   // List sheet data
-  list(options: ListSheetOptions = {}): Promise<any>; // @fixme
+  list(options: ListSheetOptions): Promise<any>; // @fixme
   // Expand sheet grids
-  expand(options: {rows: any, columns: any, sheetId: number} = {}): Promise<any>; // @fixme
+  expand(options: {rows?: any, columns?: any, sheetId?: number}): Promise<any>; // @fixme
 }
