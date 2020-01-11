@@ -27,9 +27,8 @@ const findRows = await sheetbase.sheet().find(
 ## API
 
 - Sheetbase
-  - **data** Load sheets full data
   - **sheet** Switch sheet to control base
-  - **file** get spreadsheet file info in Google drive
+  - **info** Switch sheet to control base
 - Sheet
   - **create**  Create row with JSON data
   - **update**  Update rows with JSON data and matched the query
@@ -46,7 +45,13 @@ const findRows = await sheetbase.sheet().find(
   - **delete** Delete rows or columns
   - **list** List sheet data
   - **expand** Expand sheet grids
-  
+- Drive
+  - **getFile** Get file info
+  - **exportFile** Export file to format
+  - **exportHtml** Export file to HTML
+  - **exportText** Export file to Text
+  - **exportPdf** Export file to Pdf
+
 ### Sheetbase
 
 #### Sheetbase.sheet
@@ -54,7 +59,7 @@ const findRows = await sheetbase.sheet().find(
 ```
 Sheetbase.sheet(id)
 ```
-- **id** 
+- **id**
   - `null` is default sheet with gid `0`
   - `small number` like 0-10 is for `sheet index`
   - `big number` is for `gid`

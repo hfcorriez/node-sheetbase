@@ -1,6 +1,6 @@
 {
   "name": "sheetbase",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:hfcorriez/node-sheetsapi.git",
   "author": "hfcorriez <hfcorriez@gmail.com>",
