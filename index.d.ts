@@ -10,9 +10,9 @@ declare namespace Sheetbase {
   export type  SheetOptions = BasicOptions |
   { sheet: string, spreadsheet: Spreadsheet }
 
-  type NumOpts = { [key in '$gt' | '$gte' | '$lt' | '$lte' ]: number }
-  type AnyOpts = { [key in '$contains']: any }
-  type BoolOpts = { [key in '$empty']: boolean }
+  type NumOpts = Partial<{ [key in '$gt' | '$gte' | '$lt' | '$lte' ]: number }>
+  type AnyOpts = Partial<{ [key in '$contains']: any }>
+  type BoolOpts = Partial<{ [key in '$empty']: boolean }>
 
   type QueryFilter<T> = {
     [field in keyof Partial<T>]: string | RegExp | NumOpts | AnyOpts | BoolOpts
@@ -21,13 +21,13 @@ declare namespace Sheetbase {
   type QueryOptions<T> = {
     limit?: number
     skip?: number
-    sort?: {
+    sort?: Partial<{
       [field in keyof T]: 1 | -1
-    }
+    }>
   }
-  type StrOrNumOpts = { [key in '$inc']: string | number }
-  type StrOpts = { [key in '$append' | '$prepend' | '$lowercase' | '$uppercase' ]: string }
-  type ObjOpts = { [key in '$replace']: { [k in string]: string }}
+  type StrOrNumOpts = Partial<{ [key in '$inc']: string | number }>
+  type StrOpts = Partial<{ [key in '$append' | '$prepend' | '$lowercase' | '$uppercase' ]: string }>
+  type ObjOpts = Partial<{ [key in '$replace']: { [k in string]: string }}>
   type UpdateOptions<T> = {
     [field in keyof T]: string | number | StrOrNumOpts | StrOpts | ObjOpts
   }
