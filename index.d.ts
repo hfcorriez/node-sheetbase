@@ -1,3 +1,4 @@
+import { drive_v3 } from 'googleapis'
 declare module 'sheetbase' {
   namespace Sheetbase {
     type BasicOptions = {
@@ -6,6 +7,7 @@ declare module 'sheetbase' {
       spreadsheetId: string
     }
     export type SheetbaseOptions = BasicOptions
+    export type DriveOptions = BasicOptions
     export type  SheetOptions = BasicOptions |
     { sheet: string, spreadsheet: Spreadsheet }
 
@@ -29,6 +31,19 @@ declare module 'sheetbase' {
     type ObjOpts = { [key in '$replace']: { [k in string]: string }}
     type UpdateOptions<T> = {
       [field in keyof T]: string | number | StrOrNumOpts | StrOpts | ObjOpts
+    }
+
+    type HtmlOptions = {
+      bodyOnly: boolean;
+    }
+
+    export class Drive {
+      constructor (options: DriveOptions);
+      getFile(): Promise<drive_v3.Schema$File>;
+      exportFile(fileId: string): Promise<drive_v3.Schema$File>;
+      exportText<T>(fileId: string): Promise<T>;
+      exportPdf<T>(fileId: string): Promise<T>;
+      exportHtml(fileId: string, options: HtmlOptions): Promise<string>;
     }
 
     export class Sheet<T> {
@@ -111,6 +126,7 @@ declare module 'sheetbase' {
   }
 
   class Sheetbase {
+    drive: Sheetbase.Drive;
     constructor (options: Sheetbase.SheetbaseOptions);
     // Load sheets full data
     sheet<T>(sheet: number | string): Sheetbase.Sheet<T>;
