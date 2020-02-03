@@ -10,7 +10,7 @@ declare namespace Sheetbase {
   export type  SheetOptions = BasicOptions |
   { sheet: string, spreadsheet: Spreadsheet }
 
-  type NumOpts = Partial<{ [key in '$gt' | '$gte' | '$lt' | '$lte' ]: number }>
+  type NumOpts = Partial<{ [key in '$gt' | '$gte' | '$lt' | '$lte' ]: number | string }>
   type AnyOpts = Partial<{ [key in '$contains']: any }>
   type BoolOpts = Partial<{ [key in '$empty']: boolean }>
 
