@@ -1,7 +1,6 @@
-const Main =  require('./lib/sheetbase')
+const Sheetbase =  require('./lib/sheetbase')
 
-Main.Drive = require('./lib/drive')
-Main.Cache = require('./lib/cache')
-Main.Spreadsheet = require('./lib/spreadsheet')
+Sheetbase.Spreadsheet = require('./lib/spreadsheet')
+Sheetbase.GoolgeApi = require('./lib/googleapi')
 
-module.exports = Main
+module.exports = Sheetbase

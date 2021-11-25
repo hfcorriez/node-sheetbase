@@ -7,7 +7,9 @@ Use `Google sheets` such like `mongodb` to help develop website and CMS quickly.
 ```javascript
 const sheetbase = new Sheetbase({
     credentialsFile: path.join(__dirname, 'config/credentials.json'),
+    credentials: '____CREDENTIALS____',
     tokenFile: path.join(__dirname, 'config/token.json'),
+    token: '____TOKEN____',
     spreadsheetId: '1goRN3hwHgwevJzQ-xxxxx-xxxxxxxxxxx'
 })
 
